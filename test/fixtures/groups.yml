@@ -1,0 +1,9 @@
+christmas_2019:
+  name: Christmas 2019
+  description: A real Christmas party!
+  names_drawn: true
+
+christmas_2020:
+  name: Christmas 2020
+  description: Socially distant Secret Santa.
+  names_drawn: false

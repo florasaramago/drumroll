@@ -1,0 +1,29 @@
+monica_ross_christmas_2019:
+  group: christmas_2019
+  giver: monica_christmas_2019
+  receiver: ross_christmas_2019
+
+ross_joey_christmas_2019:
+  group: christmas_2019
+  giver: ross_christmas_2019
+  receiver: joey_christmas_2019
+
+joey_chandler_christmas_2019:
+  group: christmas_2019
+  giver: joey_christmas_2019
+  receiver: chandler_christmas_2019
+
+chandler_phoebe_christmas_2019:
+  group: christmas_2019
+  giver: chandler_christmas_2019
+  receiver: phoebe_christmas_2019
+
+phoebe_rachel_christmas_2019:
+  group: christmas_2019
+  giver: phoebe_christmas_2019
+  receiver: rachel_christmas_2019
+
+rachel_monica_christmas_2019:
+  group: christmas_2019
+  giver: rachel_christmas_2019
+  receiver: monica_christmas_2019
