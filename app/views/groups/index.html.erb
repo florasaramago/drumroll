@@ -4,7 +4,11 @@
 
 <% if @groups.any? %>
   <% @groups.each do |group| %>
-    <%= link_to group.name, group_path(group) %>
+    <div class="box">
+      <%= link_to group.name, group_path(group) %>
+
+      <p><%= group.description %></p>
+    </div>
   <% end %>
 <% else %>
   <p>You don't have any groups yet!</p>

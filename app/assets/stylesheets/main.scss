@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'Baloo';
+  src: url('./BalooTamma2-Regular.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Baloo', sans-serif;
+  color: #000000b5;
+}
+
+a:link, a:active, a:visited {
+  color: #927217;
+  text-decoration: none;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+h1 {
+  font-size: 40px;
+  color: #a95519ed;
+}
+
+.logo {
+  margin-top: 5px;
+
+  a:link, a:active, a:visited {
+    font-size: 30px;
+    color: #54a999;
+  }
+}
+
+#content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 25px 30%;
+
+  @media screen and (max-width: 1000px) {
+    margin: 25px 20%;
+  }
+
+  @media screen and (max-width: 800px) {
+    margin: 25px 15%;
+  }
+
+  @media screen and (max-width: 500px) {
+    margin: 25px 10%;
+  }
+}
+
+.box {
+  border: 3px solid;
+  border-color: #54a99973 #54a999a6 #54a999a6 #54a99973;
+  margin-bottom: 30px;
+  padding: 20px;
+  border-radius: 4px;
+  min-width: 300px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #9bcdd0;
+  margin-bottom: 25px;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 20px;
+}

@@ -10,6 +10,16 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div id="content">
+      <div class="header">
+        <div class="logo"><%= link_to "drumroll", root_path %></div>
+
+        <% if user_signed_in? %>
+          <p><%= link_to "Log out", destroy_user_session_path, method: :delete %></p>
+        <% end %>
+      </div>
+
+      <%= yield %>
+    </div>
   </body>
 </html>
