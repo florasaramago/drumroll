@@ -7,23 +7,29 @@
 monica:
   name: Monica
   email: monica@drumroll.com
+  confirmed_at: <%= Time.now.to_s(:db) %>
 
 joey:
   name: Joey
   email: joey@drumroll.com
+  confirmed_at: <%= Time.now.to_s(:db) %>
 
 rachel:
   name: Rachel
   email: rachel@drumroll.com
+  confirmed_at: <%= Time.now.to_s(:db) %>
 
 chandler:
   name: Chandler
   email: chandler@drumroll.com
+  confirmed_at: <%= Time.now.to_s(:db) %>
 
 phoebe:
   name: Phoebe
   email: phoebe@drumroll.com
+  confirmed_at: <%= Time.now.to_s(:db) %>
 
 ross:
   name: Ross
   email: ross@drumroll.com
+  confirmed_at: <%= Time.now.to_s(:db) %>

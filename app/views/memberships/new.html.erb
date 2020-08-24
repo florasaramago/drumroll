@@ -1,0 +1,10 @@
+<h1>Invite people to <%= @group.name %></h1>
+
+<p>Enter the email addresses of the people you wish to invite:</p>
+<%= form_with url: group_memberships_path(@group) do |form| %>
+  <% 10.times do %>
+    <p><input type="email" name="membership[:email_addresses][]" placeholder="Email address" /></p>
+  <% end %>
+
+  <%= form.submit "Send invitations" %>
+<% end %>

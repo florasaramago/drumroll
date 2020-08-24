@@ -1,0 +1,9 @@
+<h1>My Wishlist</h1>
+<p><%= @group.name %></p>
+
+<%= form_with model: @membership, url: group_membership_path(@group, @membership) do |form| %>
+  <%= form.label :wishlist, "Wishlist:" %>
+  <%= form.text_area :wishlist %>
+
+  <%= form.submit "Save" %>
+<% end %>

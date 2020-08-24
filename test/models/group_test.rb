@@ -16,8 +16,7 @@ class GroupTest < ActiveSupport::TestCase
   end
 
   test "a group can draw names when it has more than 2 members, all confirmed" do
-    group = Group.create! name: "Women"
-    group.memberships.create! user: users(:monica), admin: true
+    group = users(:monica).groups.create! name: "Women", creator: users(:monica)
     group.memberships.create! user: users(:rachel), admin: false
     group.memberships.create! user: users(:phoebe), admin: false
     group.memberships.each(&:confirm!)

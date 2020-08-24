@@ -1,0 +1,13 @@
+<%= form_with model: group do |form| %>
+  <p>
+    <%= form.label :name, "Name:" %>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :description, "Description:" %>
+    <%= form.text_area :description %>
+  </p>
+
+  <%= form.submit "Save" %>
+<% end %>
