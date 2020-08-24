@@ -2,13 +2,12 @@ class ExchangesController < ApplicationController
   before_action :set_group
 
   def create
-    # draw names
-
+    @group.draw_names
     redirect_to @group
   end
 
   def show
-    @exchange = @group.exchanges.find_by(giver: current_user.membership(@group))
+    @exchange = @group.receiver_for current_user
   end
 
   private

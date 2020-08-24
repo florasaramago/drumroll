@@ -13,6 +13,14 @@ class Group < ApplicationRecord
     !names_drawn? && memberships.count > 2 && memberships.confirmed.all?
   end
 
+  def draw_names
+    Draw.new(self).perform
+  end
+
+  def receiver_for(giver)
+    exchanges.find_by giver: giver.membership(self)
+  end
+
   private
     def set_admin
       memberships.find_by(user: creator).update! admin: true, confirmed: true
