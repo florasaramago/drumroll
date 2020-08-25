@@ -1,5 +1,8 @@
 form {
-  p {
+  display: flex;
+  flex-direction: column;
+
+  p, .field_with_errors {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,7 +13,7 @@ form {
       font-weight: 900;
     }
 
-    textarea, input[type=text], input[type=email] {
+    textarea, input[type=text], input[type=email], input[type=password] {
       border: 1px solid #927217;
       border-radius: 5px;
       color: #000000b5;
@@ -28,6 +31,31 @@ form {
       border-radius: 21px;
       padding: 7px 16px;
     }
+  }
+
+  p.inline {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  em {
+    text-align: center;
+  }
+
+  #error_explanation {
+    color: #c52828;
+    padding: 0 25px;
+  }
+}
+
+.field_with_errors {
+  label {
+    color: #c52828 !important;
+  }
+
+  textarea, input[type=text], input[type=email], input[type=password] {
+    border: 1px solid #c52828 !important;
   }
 }
 
