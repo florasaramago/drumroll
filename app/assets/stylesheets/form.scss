@@ -1,0 +1,36 @@
+form {
+  p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    label {
+      color: #a95519ed;
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    textarea, input[type=text], input[type=email] {
+      border: 1px solid #927217;
+      border-radius: 5px;
+      color: #000000b5;
+      font-family: 'Baloo', sans-serif;
+      font-size: 17px;
+      padding: 10px;
+      width: 75%;
+      outline: 0;
+    }
+
+    input[type=submit] {
+      background-color: #ecd79b;
+      color: #755b10;
+      border: 1px solid #927217;
+      border-radius: 21px;
+      padding: 7px 16px;
+    }
+  }
+}
+
+.wishlist-field {
+  min-height: 200px;
+}

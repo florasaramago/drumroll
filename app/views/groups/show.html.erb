@@ -11,10 +11,13 @@
 </div>
 
 <div class="box">
+  <p class="title">Description</p>
   <p><%= @group.description %></p>
 </div>
 
 <div class="box">
+  <p class="title">Members</p>
+
   <% @group.memberships.each do |member| %>
     <p><%= link_to member.name, group_membership_path(@group, member) %></p>
   <% end %>

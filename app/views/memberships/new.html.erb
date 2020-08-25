@@ -1,12 +1,17 @@
 <h1>Invite people to <%= @group.name %></h1>
 
+<div class="menu">
+  <%= link_to "« Back to group", group_path(@group) %>
+</div>
+
 <div class="box">
-  <p>Enter the email addresses of the people you wish to invite:</p>
   <%= form_with url: group_memberships_path(@group) do |form| %>
+    <p><label>Enter the email addresses of the people you wish to invite:</label></p>
+
     <% 10.times do %>
       <p><input type="email" name="membership[:email_addresses][]" placeholder="Email address" /></p>
     <% end %>
 
-    <%= form.submit "Send invitations" %>
+    <p><%= form.submit "Send invitations" %></p>
   <% end %>
 </div>

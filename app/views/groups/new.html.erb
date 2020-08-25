@@ -1,5 +1,9 @@
 <h1>Create group</h1>
 
+<div class="menu">
+  <%= link_to "« Back to groups", groups_path %>
+</div>
+
 <div class="box">
   <%= render 'form', group: Group.new %>
 </div>

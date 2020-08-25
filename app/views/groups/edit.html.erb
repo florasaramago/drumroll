@@ -1,5 +1,9 @@
 <h1>Edit <%= @group.name %></h1>
 
+<div class="menu">
+  <%= link_to "« Back to group", group_path(@group) %>
+</div>
+
 <div class="box">
   <%= render 'form', group: @group %>
 </div>

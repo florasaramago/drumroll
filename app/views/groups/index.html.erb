@@ -1,6 +1,8 @@
 <h1>My Groups</h1>
 
-<%= link_to "New group", new_group_path %>
+<div class="menu">
+  <%= link_to "New group", new_group_path %>
+</div>
 
 <% if @groups.any? %>
   <% @groups.each do |group| %>

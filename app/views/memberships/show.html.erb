@@ -1,5 +1,9 @@
 <h1><%= @membership.name %>'s Wishlist</h1>
 
+<div class="menu">
+  <%= link_to "« Back to group", group_path(@group) %>
+</div>
+
 <div class="box">
   <p><%= @membership.wishlist %></p>
 </div>

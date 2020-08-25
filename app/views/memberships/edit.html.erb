@@ -1,13 +1,16 @@
 <h1>My Wishlist</h1>
-<p><%= link_to @group.name, group_path(@group) %></p>
+
+<div class="menu">
+  <%= link_to "« Back to group", group_path(@group) %>
+</div>
 
 <div class="box">
   <%= form_with model: @membership, url: group_membership_path(@group, @membership) do |form| %>
     <p>
       <%= form.label :wishlist, "Wishlist:" %>
-      <%= form.text_area :wishlist %>
+      <%= form.text_area :wishlist, class: "wishlist-field" %>
     </p>
 
-    <%= form.submit "Save" %>
+    <p><%= form.submit "Save" %></p>
   <% end %>
 </div>
