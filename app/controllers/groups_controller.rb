@@ -10,6 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @exchange = @group.receiver_for(current_user)
   end
 
   def create

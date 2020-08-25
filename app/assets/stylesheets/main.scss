@@ -90,5 +90,14 @@ h1 {
   flex-direction: row;
   justify-content: space-around;
   width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+
+  a {
+    line-height: 35px;
+  }
+
+  input[type=submit] {
+    cursor: pointer;
+    font-family: 'Baloo', sans-serif;
+  }
 }

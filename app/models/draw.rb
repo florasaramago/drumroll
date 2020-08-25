@@ -12,7 +12,6 @@ class Draw
         receiver = last_member?(member) ? members.first : members[index + 1]
         create_exchange(member, receiver)
       end
-      true
     end
   end
 

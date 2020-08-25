@@ -26,7 +26,7 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership.destroy!
-    redirect_to @group
+    redirect_to root_path
   end
 
   private

@@ -7,7 +7,21 @@
 
   <%= link_to "My wishlist", edit_group_membership_path(@group, current_user.membership(@group)) %>
 
-  <%= link_to "Invite people", new_group_membership_path(@group) %>
+  <% unless @group.names_drawn? %>
+    <%= link_to "Invite people", new_group_membership_path(@group) %>
+
+    <% unless current_user.admin?(@group) %>
+      <%= link_to "Leave group", group_membership_path(@group, current_user.membership(@group)), method: :delete %>
+    <% end %>
+  <% end %>
+
+  <% if current_user.admin?(@group) && @group.can_draw_names? %>
+    <%= button_to "Draw names!", group_exchanges_path(@group), method: :post %>
+  <% end %>
+
+  <% if @exchange %>
+    <%= button_to "Who did I get?", group_exchange_path(@exchange), method: :get %>
+  <% end %>
 </div>
 
 <div class="box">

@@ -23,14 +23,6 @@ form {
       width: 75%;
       outline: 0;
     }
-
-    input[type=submit] {
-      background-color: #ecd79b;
-      color: #755b10;
-      border: 1px solid #927217;
-      border-radius: 21px;
-      padding: 7px 16px;
-    }
   }
 
   p.inline {
@@ -47,6 +39,17 @@ form {
     color: #c52828;
     padding: 0 25px;
   }
+}
+
+input[type=submit] {
+  background-color: #ecd79b;
+  color: #755b10;
+  font-family: 'Baloo', sans-serif;
+  font-size: 14px;
+  line-height: 28px;
+  border: 1px solid #927217;
+  border-radius: 21px;
+  padding: 3px 16px 1px 16px;
 }
 
 .field_with_errors {
