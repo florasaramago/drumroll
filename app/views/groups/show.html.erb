@@ -32,7 +32,17 @@
 <div class="box">
   <p class="title">Members</p>
 
-  <% @group.memberships.each do |member| %>
-    <p><%= link_to member.name, group_membership_path(@group, member) %></p>
-  <% end %>
+  <div class="members">
+    <% @group.memberships.each do |member| %>
+      <%= link_to group_membership_path(@group, member) do %>
+        <div class="member">
+          <% if member.user.avatar.attached? %>
+            <%= image_tag member.user.avatar, class: "avatar" %>
+          <% end %>
+
+          <span><%= member.name %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>

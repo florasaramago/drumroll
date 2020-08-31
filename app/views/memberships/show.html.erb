@@ -5,5 +5,11 @@
 </div>
 
 <div class="box">
-  <p><%= @membership.wishlist %></p>
+  <p>
+    <% if @membership.wishlist %>
+      <%= @membership.wishlist %>
+    <% else %>
+      <%= @membership.name %> doesn't have a wishlist yet.
+    <% end %>
+  </p>
 </div>
