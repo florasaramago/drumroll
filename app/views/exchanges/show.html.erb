@@ -1,2 +1,13 @@
 <h1>Who did I get?</h1>
-<p>You got <%= @exchange.receiver.name %>!</p>
+
+<div class="menu">
+  <%= link_to "« Back to group", group_path(@group) %>
+</div>
+
+<div class="box exchange">
+  <p>You got <span class="receiver"><%= @exchange.receiver.name %>! 🎉</span></p>
+
+  <%= display_avatar(@exchange.receiver.user) %>
+
+  <p class="info">Yay! <%= @exchange.receiver.name %> is the lucky one who's getting a present from you! Don't forget to keep an eye on <%= link_to "their wishlist", group_membership_path(@group, @exchange.receiver) %>.</p>
+</div>

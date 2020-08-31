@@ -20,7 +20,7 @@
   <% end %>
 
   <% if @exchange %>
-    <%= button_to "Who did I get?", group_exchange_path(@exchange), method: :get %>
+    <%= button_to "Who did I get?", group_exchange_path(@group, @exchange), method: :get %>
   <% end %>
 </div>
 
@@ -36,11 +36,7 @@
     <% @group.memberships.each do |member| %>
       <%= link_to group_membership_path(@group, member) do %>
         <div class="member">
-          <% if member.user.avatar.attached? %>
-            <%= image_tag member.user.avatar, class: "avatar" %>
-          <% else %>
-            <%= image_tag "placeholder.png", class: "avatar" %>
-          <% end %>
+          <%= display_avatar(member.user) %>
 
           <span><%= member.name %></span>
 
@@ -55,4 +51,17 @@
       <% end %>
     <% end %>
   </div>
+</div>
+
+<div class="box">
+  <p class="title">Status</p>
+
+  <% if @group.names_drawn? %>
+    <p>
+      Names have been drawn!
+      <%= link_to "Check out who you got", group_exchange_path(@group, @exchange) %>.
+    </p>
+  <% else %>
+    Draw pending. Names can only be drawn once the group has more than 2 members and all of them are confirmed.
+  <% end %>
 </div>

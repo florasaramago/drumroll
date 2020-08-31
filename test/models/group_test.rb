@@ -12,6 +12,9 @@ class GroupTest < ActiveSupport::TestCase
   end
 
   test "a group can't draw names unless all members are confirmed" do
+    @group.memberships.create! user: users(:phoebe), admin: false
+
+    assert @group.memberships.count > 2
     assert_not_empty @group.memberships.where(confirmed: false)
     assert_not @group.can_draw_names?
   end

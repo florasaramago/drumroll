@@ -1,0 +1,24 @@
+.exchange {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    font-size: 20px;
+
+    .receiver {
+      font-weight: bold;
+      color: #54a999
+    }
+  }
+
+  .info {
+    width: 90%;
+    font-size: 18px;
+  }
+
+  .avatar {
+    height: 200px;
+    border-radius: 50%;
+  }
+}

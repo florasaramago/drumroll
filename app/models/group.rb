@@ -10,7 +10,7 @@ class Group < ApplicationRecord
   end
 
   def can_draw_names?
-    !names_drawn? && memberships.count > 2 && memberships.confirmed.all?
+    !names_drawn? && memberships.count > 2 && all_members_confirmed?
   end
 
   def draw_names
@@ -24,5 +24,9 @@ class Group < ApplicationRecord
   private
     def set_admin
       memberships.find_by(user: creator).update! admin: true, confirmed: true
+    end
+
+    def all_members_confirmed?
+      memberships.where(confirmed: false).none?
     end
 end
