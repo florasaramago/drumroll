@@ -7,7 +7,7 @@ class MembershipsController < ApplicationController
 
   def create
     invited_email_addresses.each do |email_address|
-      # invite user and create membership
+      @group.memberships.create! user: find_or_invite_user(email_address)
     end
 
     redirect_to @group
@@ -20,7 +20,7 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    @membership.update! membership_update_params
+    @membership.update! membership_params
     redirect_to @group
   end
 
@@ -38,11 +38,19 @@ class MembershipsController < ApplicationController
       @membership = @group.memberships.find params[:id]
     end
 
-    def invited_email_addresses
-      params.require(:membership).permit(:email_addresses)
+    def find_or_invite_user(email_address)
+      User.find_by(email: email_address) || User.invite!(email: email_address)
     end
 
-    def membership_update_params
+    def invited_email_addresses
+      email_address_params[:email_addresses].split(',').map { |email| email.split(' ') }.flatten.uniq
+    end
+
+    def email_address_params
+      params.permit(:email_addresses)
+    end
+
+    def membership_params
       params.require(:membership).permit(:confirmed, :wishlist)
     end
 end

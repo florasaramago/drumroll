@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  devise :database_authenticatable, :confirmable, :registerable,
+  devise :invitable, :database_authenticatable, :confirmable, :registerable,
          :recoverable, :rememberable, :validatable
 
   has_many :memberships

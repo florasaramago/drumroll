@@ -4,11 +4,13 @@ class Membership < ApplicationRecord
 
   has_many :exchanges
 
-  delegate :name, to: :user
-
   scope :confirmed, -> { where(confirmed: true) }
 
   def confirm!
     update! confirmed: true
+  end
+
+  def name
+    user.name || user.email
   end
 end

@@ -6,11 +6,9 @@
 
 <div class="box">
   <%= form_with url: group_memberships_path(@group) do |form| %>
-    <p><label>Enter the email addresses of the people you wish to invite:</label></p>
+    <p><label>Enter the email addresses of the people you wish to invite, separated by spaces or commas:</label></p>
 
-    <% 10.times do %>
-      <p><input type="email" name="membership[:email_addresses][]" placeholder="Email address" /></p>
-    <% end %>
+    <p><textarea name="email_addresses" placeholder="person1@example.com, person2@example.com, person3@example.com" class="large-field"></textarea></p>
 
     <p><%= form.submit "Send invitations" %></p>
   <% end %>

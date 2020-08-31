@@ -44,6 +44,7 @@ form {
 input[type=submit] {
   background-color: #ecd79b;
   color: #755b10;
+  cursor: pointer;
   font-family: 'Baloo', sans-serif;
   font-size: 14px;
   line-height: 28px;
@@ -62,6 +63,6 @@ input[type=submit] {
   }
 }
 
-.wishlist-field {
+.large-field {
   min-height: 200px;
 }
