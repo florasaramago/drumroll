@@ -1,4 +1,6 @@
 class Group < ApplicationRecord
+  include Invitable
+
   has_many :memberships, dependent: :destroy
   has_many :exchanges, dependent: :destroy
   belongs_to :creator, class_name: 'User'

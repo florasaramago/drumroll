@@ -12,10 +12,7 @@ class MembershipsController < ApplicationController
   end
 
   def create
-    invited_email_addresses.each do |email_address|
-      @group.memberships.create! user: find_or_invite_user(email_address)
-    end
-
+    @group.invite email_address_params[:email_addresses]
     redirect_to @group
   end
 
@@ -50,14 +47,6 @@ class MembershipsController < ApplicationController
 
     def check_admin
       redirect_back fallback_location: group_path(@group) unless current_user.admin?(@group)
-    end
-
-    def find_or_invite_user(email_address)
-      User.find_by(email: email_address) || User.invite!(email: email_address)
-    end
-
-    def invited_email_addresses
-      email_address_params[:email_addresses].split(',').map { |email| email.split(' ') }.flatten.uniq
     end
 
     def email_address_params
