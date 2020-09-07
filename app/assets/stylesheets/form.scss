@@ -66,3 +66,12 @@ input[type=submit] {
 .large-field {
   min-height: 200px;
 }
+
+input[type=submit].submit-link {
+  color: #927217;
+  background-color: transparent;
+  border: none;
+  font-size: 17px;
+  text-align: left;
+  padding: 0;
+}

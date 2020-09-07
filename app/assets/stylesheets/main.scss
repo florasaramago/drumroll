@@ -79,11 +79,21 @@ h1 {
   min-width: 300px;
   width: 100%;
 
-  .title {
-    font-size: 20px;
-    color: #a95519ed;
-    font-weight: 800;
-    margin: 0;
+  .box-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .title {
+      font-size: 20px;
+      color: #a95519ed;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .box-menu {
+
+    }
   }
 }
 

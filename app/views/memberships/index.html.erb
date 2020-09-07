@@ -1,0 +1,32 @@
+<h1>Members of <%= @group.name %></h1>
+
+<div class="menu">
+  <%= link_to "« Back to group", group_path(@group) %>
+  <%= link_to "Add members", new_group_membership_path(@group) %>
+</div>
+
+<div class="box memberships">
+  <i>Note: members can only be removed before names are drawn.</i>
+
+  <% @group.memberships.each do |member| %>
+    <div class="member">
+      <%= display_avatar(member.user) %>
+
+      <div class="info">
+        <span><%= member.name %></span>
+        <%= render "memberships/status", member: member %>
+      </div>
+
+      <div class="actions">
+        <% unless member.admin? %>
+          <%= form_with model: member, url: group_membership_path(@group, member), method: :put do |form| %>
+            <%= form.hidden_field :admin, value: true %>
+            <%= form.submit "Make admin", class: "submit-link", data: { confirm: "Are you sure you want to make #{member.name} an admin?" } %>
+          <% end %>
+        <% end %>
+
+        <%= link_to "Remove from group", group_membership_path(@group, member), method: :delete, data: { confirm: "Are you sure you want to remove #{member.name} from the group?" } %>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -25,12 +25,24 @@
 </div>
 
 <div class="box">
-  <p class="title">Description</p>
+  <div class="box-header">
+    <p class="title">Description</p>
+  </div>
+
   <p><%= @group.description %></p>
 </div>
 
 <div class="box">
-  <p class="title">Members</p>
+  <div class="box-header">
+    <p class="title">Members</p>
+
+    <% unless @group.names_drawn? %>
+      <div class="box-menu">
+        <%= link_to "Edit", group_memberships_path(@group) %>
+      </div>
+    <% end %>
+  </div>
+
 
   <div class="members">
     <% @group.memberships.each do |member| %>
@@ -40,13 +52,7 @@
 
           <span><%= member.name %></span>
 
-          <span class="status">
-            <% if member.confirmed? %>
-              <span class="confirmed">Confirmed</span>
-            <% else %>
-              <span class="pending">Pending</span>
-            <% end %>
-          </span>
+          <%= render "memberships/status", member: member %>
         </div>
       <% end %>
     <% end %>
@@ -54,7 +60,9 @@
 </div>
 
 <div class="box">
-  <p class="title">Status</p>
+  <div class="box-header">
+    <p class="title">Status</p>
+  </div>
 
   <% if @group.names_drawn? %>
     <p>

@@ -1,6 +1,12 @@
 class MembershipsController < ApplicationController
   before_action :set_group
+  before_action :check_admin, only: :index
+  before_action :check_names_drawn
   before_action :set_membership, only: %i[ show edit update destroy ]
+
+  def index
+    @memberships = @group.memberships
+  end
 
   def new
   end
@@ -21,12 +27,12 @@ class MembershipsController < ApplicationController
 
   def update
     @membership.update! membership_params
-    redirect_to @group
+    redirect_back fallback_location: @group
   end
 
   def destroy
     @membership.destroy!
-    redirect_to root_path
+    redirect_back fallback_location: root_path
   end
 
   private
@@ -36,6 +42,14 @@ class MembershipsController < ApplicationController
 
     def set_membership
       @membership = @group.memberships.find params[:id]
+    end
+
+    def check_names_drawn
+      redirect_back fallback_location: group_path(@group) if @group.names_drawn?
+    end
+
+    def check_admin
+      redirect_back fallback_location: group_path(@group) unless current_user.admin?(@group)
     end
 
     def find_or_invite_user(email_address)
@@ -51,6 +65,6 @@ class MembershipsController < ApplicationController
     end
 
     def membership_params
-      params.require(:membership).permit(:confirmed, :wishlist)
+      params.require(:membership).permit(:confirmed, :wishlist, :admin)
     end
 end

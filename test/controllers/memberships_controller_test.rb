@@ -10,6 +10,27 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     sign_in users(:monica)
   end
 
+  test "#index as admin" do
+    get group_memberships_url(@group)
+    assert_response :ok
+  end
+
+  test "#index as a non-admin" do
+    sign_in users(:rachel)
+
+    get group_memberships_url(@group)
+    assert_redirected_to group_url(@group)
+  end
+
+  test "#index as an admin after names are drawn" do
+    group = groups(:christmas_2019)
+
+    assert group.names_drawn?
+
+    get group_memberships_url(group)
+    assert_redirected_to group_url(group)
+  end
+
   test "#new" do
     get new_group_membership_url(@group)
     assert_response :ok
