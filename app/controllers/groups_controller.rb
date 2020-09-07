@@ -10,7 +10,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @exchange = @group.receiver_for(current_user)
+    @membership = current_user.membership(@group)
+    @exchange   = @group.receiver_for(current_user)
   end
 
   def create

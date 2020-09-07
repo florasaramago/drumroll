@@ -1,5 +1,16 @@
 <h1><%= @group.name %></h1>
 
+<% unless @membership.confirmed? %>
+  <div class="confirmation-box">
+    <span>You've been invited to join this group.</span>
+
+    <%= form_with model: @membership, url: group_membership_path(@group, @membership), method: :put do |form| %>
+      <%= form.hidden_field :confirmed, value: true %>
+      <%= form.submit "Accept invitation" %>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="menu">
   <% if current_user.admin?(@group) %>
     <%= link_to "Edit group", edit_group_path(@group) %>

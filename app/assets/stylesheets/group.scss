@@ -12,11 +12,10 @@
 
     .avatar {
       height: 100px;
+      width: 100px;
       border-radius: 50%;
       margin-bottom: 5px;
     }
-
-
   }
 }
 
@@ -30,5 +29,26 @@
 
   .pending {
     color: #c12b2b;
+  }
+}
+
+.confirmation-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #52b76838;
+  border: 1px solid #0d940d;
+  border-radius: 4px;
+  margin-bottom: 30px;
+  padding: 15px 0;
+  width: 100%;
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+
+    span {
+      margin-bottom: 10px;
+    }
   }
 }
