@@ -36,7 +36,7 @@
   <div class="box-header">
     <p class="title">Members</p>
 
-    <% unless @group.names_drawn? %>
+    <% if current_user.admin?(@group) && !@group.names_drawn? %>
       <div class="box-menu">
         <%= link_to "Edit", group_memberships_path(@group) %>
       </div>
