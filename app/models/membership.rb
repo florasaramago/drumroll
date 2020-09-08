@@ -4,6 +4,8 @@ class Membership < ApplicationRecord
 
   has_many :exchanges
 
+  has_rich_text :wishlist
+
   delegate :name, to: :user
 
   scope :confirmed, -> { where(confirmed: true) }

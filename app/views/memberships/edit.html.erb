@@ -8,7 +8,7 @@
   <%= form_with model: @membership, url: group_membership_path(@group, @membership) do |form| %>
     <p>
       <%= form.label :wishlist, "Wishlist:" %>
-      <%= form.text_area :wishlist, class: "large-field" %>
+      <%= form.rich_text_area :wishlist %>
     </p>
 
     <p><%= form.submit "Save" %></p>
