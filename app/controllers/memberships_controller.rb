@@ -1,7 +1,7 @@
 class MembershipsController < ApplicationController
   before_action :set_group
   before_action :check_admin, only: :index
-  before_action :check_names_drawn
+  before_action :check_names_drawn, only: %i[ index new create destroy ]
   before_action :set_membership, only: %i[ show edit update destroy ]
 
   def index
@@ -25,7 +25,7 @@ class MembershipsController < ApplicationController
 
   def update
     @membership.update! membership_params
-    redirect_back fallback_location: @group
+    redirect_to group_membership_url(@group, @membership)
   end
 
   def destroy
