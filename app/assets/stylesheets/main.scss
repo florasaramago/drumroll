@@ -146,3 +146,46 @@ h1 {
     font-family: 'Baloo', sans-serif;
   }
 }
+
+.flash {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+
+  animation: flash 0.5s 1;
+  -webkit-animation: flash 0.5s 1;
+  animation-fill-mode: forwards;
+
+  animation-delay: 3s;
+  -webkit-animation-delay: 3s; /* Safari and Chrome */
+  -webkit-animation-fill-mode: forwards;
+
+  div {
+    border-radius: 4px;
+    width: 100%;
+    padding: 8px 0 5px 0;
+    text-align: center;
+  }
+
+  .notice {
+    background-color: #52b76838;
+    border: 1px solid #0d940d;
+  }
+
+  .alert {
+    background-color: #ca3a2329;
+    border: 1px solid #a7170c;
+  }
+}
+
+@keyframes flash {
+    from { opacity :1; }
+    to { opacity :0; height: 0; }
+}
+
+@-webkit-keyframes flash {
+    from { opacity :1; }
+    to { opacity :0; height: 0; }
+}

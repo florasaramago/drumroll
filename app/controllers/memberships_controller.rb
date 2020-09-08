@@ -14,7 +14,7 @@ class MembershipsController < ApplicationController
 
   def create
     @group.invite email_address_params
-    redirect_to @group
+    redirect_to @group, notice: "Invitations sent."
   end
 
   def show
@@ -25,12 +25,12 @@ class MembershipsController < ApplicationController
 
   def update
     @membership.update! membership_params
-    redirect_to group_membership_url(@group, @membership)
+    redirect_to group_membership_url(@group, @membership), notice: "Wishlist saved."
   end
 
   def destroy
     @membership.destroy!
-    redirect_back fallback_location: root_path
+    redirect_back fallback_location: root_path, notice: "You have left '#{@group.name}'"
   end
 
   private
@@ -43,11 +43,15 @@ class MembershipsController < ApplicationController
     end
 
     def check_names_drawn
-      redirect_back fallback_location: group_path(@group) if @group.names_drawn?
+      if @group.names_drawn?
+        redirect_back fallback_location: group_path(@group), alert: "You can't make changes to group members after names have been drawn."
+      end
     end
 
     def check_admin
-      redirect_back fallback_location: group_path(@group) unless current_user.admin?(@group)
+      unless current_user.admin?(@group)
+        redirect_back fallback_location: group_path(@group), alert: "Only admins can edit the group."
+      end
     end
 
     def email_address_params

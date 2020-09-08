@@ -24,12 +24,12 @@ class GroupsController < ApplicationController
 
   def update
     @group.update! group_params
-    redirect_to @group
+    redirect_to @group, notice: "Group successfully updated."
   end
 
   def destroy
     @group.destroy!
-    redirect_to groups_url
+    redirect_to groups_url, notice: "Group successfully destroyed."
   end
 
   private
@@ -38,7 +38,7 @@ class GroupsController < ApplicationController
     end
 
     def check_admin
-      redirect_to @group unless current_user.admin?(@group)
+      redirect_to @group, alert: "Only admins can edit the group." unless current_user.admin?(@group)
     end
 
     def group_params

@@ -3,7 +3,7 @@ class ExchangesController < ApplicationController
 
   def create
     @group.draw_names
-    redirect_to @group
+    redirect_to @group, notice: "Names have been drawn!"
   end
 
   def show
