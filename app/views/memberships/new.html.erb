@@ -10,6 +10,20 @@
 
     <p><textarea name="email_addresses" placeholder="person1@example.com, person2@example.com, person3@example.com" class="large-field"></textarea></p>
 
+    <% if @invitable_contacts.any? %>
+      <p><label>And/or select from your existing contacts:</label></p>
+
+      <div class="contacts">
+        <% @invitable_contacts.each do |contact| %>
+          <div class="contact">
+            <%= form.check_box "contact_email_addresses[#{contact.email}]" %>
+            <%= display_avatar(contact) %>
+            <span><%= contact.name %></span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
     <p><%= form.submit "Send invitations" %></p>
   <% end %>
 </div>

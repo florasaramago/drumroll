@@ -9,10 +9,11 @@ class MembershipsController < ApplicationController
   end
 
   def new
+    @invitable_contacts = current_user.invitable_contacts_for(@group)
   end
 
   def create
-    @group.invite email_address_params[:email_addresses]
+    @group.invite email_address_params
     redirect_to @group
   end
 
@@ -50,7 +51,7 @@ class MembershipsController < ApplicationController
     end
 
     def email_address_params
-      params.permit(:email_addresses)
+      params.permit(:email_addresses, contact_email_addresses: {})
     end
 
     def membership_params

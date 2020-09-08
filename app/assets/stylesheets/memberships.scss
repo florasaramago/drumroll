@@ -41,3 +41,23 @@
     }
   }
 }
+
+.contacts {
+  max-width: 80%;
+  width: auto;
+  margin: 0 auto 20px auto;
+
+  .contact {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+
+    .avatar {
+      height: 60px;
+      width: 60px;
+      border-radius: 50%;
+      margin: 0 10px 5px 15px;
+    }
+  }
+}

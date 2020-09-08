@@ -68,6 +68,16 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "#create with both text and selection" do
+    assert_difference -> { @new_group.memberships.count }, +3 do
+      post group_memberships_url(@new_group), params: {
+        email_addresses: "someone@new.com", contact_email_addresses: {"rachel@drumroll.com"=>"1", "joey@drumroll.com"=>"1", "chandler@drumroll.com"=>"0"}
+      }
+
+      assert_redirected_to group_url(@new_group)
+    end
+  end
+
   test "#create with a duplicated address" do
     assert_difference -> { @new_group.memberships.count }, +3 do
       post group_memberships_url(@new_group), params: { email_addresses: "rachel@drumroll.com, joey@drumroll.com, rachel@drumroll.com, chandler@drumroll.com" }
