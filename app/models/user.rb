@@ -11,6 +11,10 @@ class User < ApplicationRecord
     super.presence || email
   end
 
+  def first_name
+    name&.split(" ")&.first || name
+  end
+
   def admin?(group)
     membership(group).admin?
   end
