@@ -11,7 +11,7 @@ class Draw
       Group.transaction do
         draw_names
         update_group_status
-        # TODO: trigger email letting everyone know that names have been drawn.
+        notify_members
       end
     end
   end
@@ -30,6 +30,12 @@ class Draw
 
     def update_group_status
       @group.update! names_drawn: true
+    end
+
+    def notify_members
+      members.each do |member|
+        GroupMailer.names_drawn(group, member.user).deliver
+      end
     end
 
     def last_member?(member)

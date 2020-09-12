@@ -1,13 +1,25 @@
 module Group::Invitable
   def invite(email_address_params)
     parsed(email_address_params).each do |email_address|
-      memberships.create! user: find_or_invite_user(email_address)
+      add_to_group(email_address)
     end
   end
 
   private
     def find_or_invite_user(email_address)
       User.find_by(email: email_address) || User.invite!(email: email_address)
+    end
+
+    def add_to_group(email_address)
+      transaction do
+        user = find_or_invite_user(email_address)
+        memberships.create! user: user
+        send_invitation_email(user)
+      end
+    end
+
+    def send_invitation_email(user)
+      GroupMailer.invited_to_group(self, user).deliver
     end
 
     def parsed(email_address_params)

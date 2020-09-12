@@ -2,13 +2,14 @@ class Group < ApplicationRecord
   include Invitable
 
   has_many :memberships, dependent: :destroy
+  has_many :users, through: :memberships
   has_many :exchanges, dependent: :destroy
   belongs_to :creator, class_name: 'User'
 
   after_create_commit :set_admin
 
-  def admin
-    memberships.find_by(admin: true)
+  def admins
+    memberships.where(admin: true)
   end
 
   def can_draw_names?
@@ -21,6 +22,14 @@ class Group < ApplicationRecord
 
   def receiver_for(giver)
     exchanges.find_by giver: giver.membership(self)
+  end
+
+  def notify_admins_if_ready_to_draw
+    if can_draw_names?
+      admins.each do |admin|
+        GroupMailer.ready_to_draw(self, admin.user).deliver
+      end
+    end
   end
 
   private

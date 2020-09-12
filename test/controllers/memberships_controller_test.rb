@@ -80,8 +80,10 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
 
   test "#create with a duplicated address" do
     assert_difference -> { @new_group.memberships.count }, +3 do
-      post group_memberships_url(@new_group), params: { email_addresses: "rachel@drumroll.com, joey@drumroll.com, rachel@drumroll.com, chandler@drumroll.com" }
-      assert_redirected_to group_url(@new_group)
+      assert_emails 3 do
+        post group_memberships_url(@new_group), params: { email_addresses: "rachel@drumroll.com, joey@drumroll.com, rachel@drumroll.com, chandler@drumroll.com" }
+        assert_redirected_to group_url(@new_group)
+      end
     end
   end
 

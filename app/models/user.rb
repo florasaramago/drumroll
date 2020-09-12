@@ -24,6 +24,6 @@ class User < ApplicationRecord
   end
 
   def invitable_contacts_for(group)
-    groups.flat_map(&:memberships).flat_map(&:user).uniq - group.memberships.flat_map(&:user)
+    groups.flat_map(&:users).uniq - group.users
   end
 end
