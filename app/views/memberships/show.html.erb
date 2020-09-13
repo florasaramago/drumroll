@@ -8,7 +8,7 @@
 
 <div class="box">
   <p>
-    <% if @membership.wishlist %>
+    <% if @membership.wishlist.present? %>
       <%= @membership.wishlist %>
     <% else %>
       <%= @membership.name %> doesn't have a wishlist yet.

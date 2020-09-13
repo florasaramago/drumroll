@@ -104,14 +104,63 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     assert_response :ok
   end
 
-  test "#update" do
+  test "update wishlist" do
     put group_membership_url(@group, @membership), params: { membership: { wishlist: "A unicorn." }}
-    assert_response :redirect
+    assert_redirected_to group_membership_url(@group, @membership)
+
+    follow_redirect!
+    assert_select ".notice", "Wishlist saved."
+  end
+
+  test "make someone admin" do
+    put group_membership_url(@group, memberships(:rachel_christmas_2020)), params: { membership: { admin: true }}
+    assert_redirected_to group_memberships_url(@group)
+
+    follow_redirect!
+    assert_select ".notice", "Rachel is now an admin."
+  end
+
+  test "confirm membership" do
+    sign_in users(:rachel)
+
+    put group_membership_url(@group, memberships(:rachel_christmas_2020)), params: { membership: { confirmed: true }}
+    assert_redirected_to group_url(@group)
+
+    follow_redirect!
+    assert_select ".notice", "You have officially joined Christmas 2020."
   end
 
   test "#destroy" do
     delete group_membership_url(@group, @membership)
     assert_response :redirect
+  end
+
+  test "you can't remove someone from the group if you're not an admin" do
+    sign_in users(:ross)
+
+    delete group_membership_url(groups(:christmas_2021), memberships(:chandler_christmas_2021))
+    assert_redirected_to group_url(groups(:christmas_2021))
+
+    follow_redirect!
+    assert_select ".alert", "If you're not an admin, you can only make changes to you own membership."
+  end
+
+  test "you can't edit someone else's wishlist" do
+    sign_in users(:ross)
+
+    put group_membership_url(groups(:christmas_2021), memberships(:chandler_christmas_2021)), params: { membership: { wishlist: "A unicorn." }}
+    assert_redirected_to group_url(groups(:christmas_2021))
+
+    follow_redirect!
+    assert_select ".alert", "If you're not an admin, you can only make changes to you own membership."
+  end
+
+  test "you can't leave a group if you're the only admin" do
+    delete group_membership_url(groups(:christmas_2021), memberships(:monica_christmas_2021))
+    assert_redirected_to group_url(groups(:christmas_2021))
+
+    follow_redirect!
+    assert_select ".alert", "You need to make someone else an admin before you can leave the group."
   end
 
   private

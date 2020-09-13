@@ -45,3 +45,27 @@ rachel_christmas_2020:
   user: rachel
   confirmed: false
   admin: false
+
+monica_christmas_2021:
+  group: christmas_2021
+  user: monica
+  confirmed: true
+  admin: true
+
+rachel_christmas_2021:
+  group: christmas_2021
+  user: rachel
+  confirmed: true
+  admin: false
+
+ross_christmas_2021:
+  group: christmas_2021
+  user: ross
+  confirmed: true
+  admin: false
+
+chandler_christmas_2021:
+  group: christmas_2021
+  user: chandler
+  confirmed: true
+  admin: false

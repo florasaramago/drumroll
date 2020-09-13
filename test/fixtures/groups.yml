@@ -9,3 +9,9 @@ christmas_2020:
   description: Socially distant Secret Santa.
   creator: monica
   names_drawn: false
+
+christmas_2021:
+  name: Christmas 2021
+  description: Future Christmas
+  creator: monica
+  names_drawn: false

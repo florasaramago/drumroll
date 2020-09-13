@@ -26,4 +26,8 @@ class User < ApplicationRecord
   def invitable_contacts_for(group)
     groups.flat_map(&:users).uniq - group.users
   end
+
+  def can_leave?(group)
+    !admin?(group) || group.admins.many?
+  end
 end
